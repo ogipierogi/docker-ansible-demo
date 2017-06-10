@@ -1,0 +1,33 @@
+---
+- name: Install packages needed for docker
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - "{{ packages }}"
+
+- name: Download docker gpg key
+  shell: "curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -"
+
+- name: Add docker gpg key
+  shell: apt-key fingerprint 0EBFCD88
+
+- name: Add-apt repository script
+  template:
+    src: add-apt.sh.j2
+    dest: /home/vagrant/add-apt.sh
+    mode: 0777
+
+- name: Run add-apt script
+  shell: "./add-apt.sh"
+
+- name: Install docker
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: yes
+
+- name: Run our website
+  shell: "docker run -dit --name web-test -p 80:8000 crccheck/hello-world"
+  

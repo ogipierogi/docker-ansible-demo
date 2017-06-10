@@ -1,0 +1,6 @@
+---
+- name: Setup my webserver
+  hosts: wsb
+  become: yes
+  roles:
+   - role: setup_webserver

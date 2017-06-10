@@ -1,0 +1,11 @@
+Vagrant.configure(2) do |config|
+  config.vm.define "WSB_HA" do |wsb_ha|
+    wsb_ha.vm.box = "debian/jessie64"
+    wsb_ha.vm.network "private_network", ip: "10.30.30.35"
+    wsb_ha.vm.hostname = "wsb.example.com"
+  end
+  config.vm.provider "virtualbox" do |wsb_ha|
+    wsb_ha.memory = 1024
+  end
+  config.vm.provision :shell, :path => "./add_auth_key.sh"
+end
