@@ -26,3 +26,5 @@
         * **main.yml** - definicja yaml instalacji docker, pakietów, oraz deployment strony www.  
   * **setup_my_website.yml** - playbook który uruchamia rolę deployment-website.
 
+
+Kod źródłowy dostępny na: https://github.com/ogipierogi/docker-ansible-demo
